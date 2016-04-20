@@ -5,6 +5,8 @@
  */
 package com.erikthegod.mysql;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author dam
@@ -16,9 +18,11 @@ public class JFMando extends javax.swing.JFrame {
      */
     public JFMando() {
         initComponents();
+        setTitle("Controleitor");
     }
     GestorCoordenadas gest = new GestorCoordenadas();
     Nave nav = new Nave();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,13 +37,26 @@ public class JFMando extends javax.swing.JFrame {
         jtfAlias = new javax.swing.JTextField();
         jbConectar = new javax.swing.JButton();
         jbBajar = new javax.swing.JButton();
+        jbDerecha = new javax.swing.JButton();
+        jbIzquierda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jbArriba.setText("Arriba");
+        jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPanel1KeyPressed(evt);
+            }
+        });
+
+        jbArriba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/28330.png"))); // NOI18N
         jbArriba.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbArribaActionPerformed(evt);
+            }
+        });
+        jbArriba.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jbArribaKeyPressed(evt);
             }
         });
 
@@ -50,10 +67,24 @@ public class JFMando extends javax.swing.JFrame {
             }
         });
 
-        jbBajar.setText("Bajar");
+        jbBajar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/28330 (1).png"))); // NOI18N
         jbBajar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBajarActionPerformed(evt);
+            }
+        });
+
+        jbDerecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/direcciones.png"))); // NOI18N
+        jbDerecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDerechaActionPerformed(evt);
+            }
+        });
+
+        jbIzquierda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/de.png"))); // NOI18N
+        jbIzquierda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbIzquierdaActionPerformed(evt);
             }
         });
 
@@ -62,28 +93,44 @@ public class JFMando extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(154, 154, 154)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbBajar)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jtfAlias, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(113, 113, 113)
+                        .addComponent(jtfAlias, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
                         .addComponent(jbConectar))
-                    .addComponent(jbArriba))
-                .addContainerGap(53, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(jbIzquierda, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jbBajar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jbArriba, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(67, 67, 67)
+                                .addComponent(jbDerecha, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(35, 35, 35))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfAlias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jtfAlias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jbConectar))
-                .addGap(34, 34, 34)
-                .addComponent(jbArriba)
-                .addGap(64, 64, 64)
-                .addComponent(jbBajar)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addComponent(jbArriba, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbDerecha, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbIzquierda, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addComponent(jbBajar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -107,6 +154,25 @@ public class JFMando extends javax.swing.JFrame {
         nav.setAlias(jtfAlias.getText());
         gest.abajo(nav);
     }//GEN-LAST:event_jbBajarActionPerformed
+
+    private void jbDerechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDerechaActionPerformed
+        nav.setAlias(jtfAlias.getText());
+        gest.derecha(nav);
+    }//GEN-LAST:event_jbDerechaActionPerformed
+
+    private void jbIzquierdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIzquierdaActionPerformed
+        // TODO add your handling code here:
+        nav.setAlias(jtfAlias.getText());
+        gest.izquierda(nav);
+    }//GEN-LAST:event_jbIzquierdaActionPerformed
+
+    private void jbArribaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbArribaKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbArribaKeyPressed
+
+    private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel1KeyPressed
 
     /**
      * @param args the command line arguments
@@ -148,6 +214,8 @@ public class JFMando extends javax.swing.JFrame {
     private javax.swing.JButton jbArriba;
     private javax.swing.JButton jbBajar;
     private javax.swing.JButton jbConectar;
+    private javax.swing.JButton jbDerecha;
+    private javax.swing.JButton jbIzquierda;
     private javax.swing.JTextField jtfAlias;
     // End of variables declaration//GEN-END:variables
 }

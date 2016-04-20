@@ -26,22 +26,15 @@ public class GestorCoordenadas {
     public void conectarBBDD(String alias) {
         try {
             String sql = null;//Cadena con la sentencia sql    
-            ResultSet rs = null;//Conjunto de resultados
             Class.forName("com.mysql.jdbc.Driver");//Carga del driver
-            String servidor = "jdbc:mysql://localhost/naves";
-            String user = "root";
-            String pass = "";
+            String servidor = "jdbc:mysql://10.10.13.14/naves";
+            String user = "kinton";
+            String pass = "guapo";
             c = DriverManager.getConnection(servidor, user, pass);
-            sql = "SELECT * from nave";   
-            /*rs = stmt.executeQuery(); 
-            
-            while (rs.next()) {
-                System.out.println(rs.getString(alias));            
-            rs.close();
-            ps.close();*/
             stmt = c.createStatement();
             sql = "insert into nave values('" + alias + "'," + 100 + "," + 100 + ");";
             stmt.executeUpdate(sql);
+            System.out.println("por aqui");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(GestorCoordenadas.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -55,49 +48,42 @@ public class GestorCoordenadas {
             stmt = c.createStatement();
             sqlUpdate = "Update nave set posY = posY - 10  where alias ='" + nav.getAlias() + "';";
             stmt.executeUpdate(sqlUpdate);
-            /*PreparedStatement ps = null;
-            String sqlUpdate = "Update nave set posY = posY +10  where alias ='"+nav.getAlias()+ "';";
-            ps = c.prepareStatement(sqlUpdate);
-            ps.setInt(1, nav.getPosX() + 100);
-            ps.setInt(2, nav.getPosY());
-            ps.setString(3, "'"+nav.getAlias()+"'");
-            ps.executeUpdate(sqlUpdate);*/
         } catch (SQLException ex) {
             System.err.println("ERROR DE SQL EXCEPTION");
             ex.printStackTrace();
         }
     }
-    public void abajo(Nave nav){
+
+    public void abajo(Nave nav) {
         try {
             String sqlUpdate = null;
             stmt = c.createStatement();
             sqlUpdate = "Update nave set posY = posY + 10  where alias ='" + nav.getAlias() + "';";
             stmt.executeUpdate(sqlUpdate);
-            /*PreparedStatement ps = null;
-            String sqlUpdate = "Update nave set posY = posY +10  where alias ='"+nav.getAlias()+ "';";
-            ps = c.prepareStatement(sqlUpdate);
-            ps.setInt(1, nav.getPosX() + 100);
-            ps.setInt(2, nav.getPosY());
-            ps.setString(3, "'"+nav.getAlias()+"'");
-            ps.executeUpdate(sqlUpdate);*/
         } catch (SQLException ex) {
             System.err.println("ERROR DE SQL EXCEPTION");
             ex.printStackTrace();
         }
     }
-    public void derecha(Nave nav){
-                try {
+
+    public void derecha(Nave nav) {
+        try {
             String sqlUpdate = null;
             stmt = c.createStatement();
-            sqlUpdate = "Update nave set posY = posY + 10  where alias ='" + nav.getAlias() + "';";
+            sqlUpdate = "Update nave set posX = posX + 10  where alias ='" + nav.getAlias() + "';";
             stmt.executeUpdate(sqlUpdate);
-            /*PreparedStatement ps = null;
-            String sqlUpdate = "Update nave set posY = posY +10  where alias ='"+nav.getAlias()+ "';";
-            ps = c.prepareStatement(sqlUpdate);
-            ps.setInt(1, nav.getPosX() + 100);
-            ps.setInt(2, nav.getPosY());
-            ps.setString(3, "'"+nav.getAlias()+"'");
-            ps.executeUpdate(sqlUpdate);*/
+        } catch (SQLException ex) {
+            System.err.println("ERROR DE SQL EXCEPTION");
+            ex.printStackTrace();
+        }
+    }
+    
+    public void izquierda(Nave nav){
+        try {
+            String sqlUpdate = null;
+            stmt = c.createStatement();
+            sqlUpdate = "Update nave set posX = posX - 10  where alias ='" + nav.getAlias() + "';";
+            stmt.executeUpdate(sqlUpdate);
         } catch (SQLException ex) {
             System.err.println("ERROR DE SQL EXCEPTION");
             ex.printStackTrace();
