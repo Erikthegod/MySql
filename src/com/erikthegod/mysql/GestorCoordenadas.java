@@ -27,9 +27,9 @@ public class GestorCoordenadas {
         try {
             String sql = null;//Cadena con la sentencia sql    
             Class.forName("com.mysql.jdbc.Driver");//Carga del driver
-            String servidor = "jdbc:mysql://10.10.13.14/naves";
-            String user = "kinton";
-            String pass = "guapo";
+            String servidor = "jdbc:mysql://localhost:8889/naves";
+            String user = "root";
+            String pass = "root";
             c = DriverManager.getConnection(servidor, user, pass);
             stmt = c.createStatement();
             sql = "insert into nave values('" + alias + "'," + 100 + "," + 100 + ");";
